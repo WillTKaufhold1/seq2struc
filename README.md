@@ -47,15 +47,15 @@ Underdetermined type 2
 --------AA----------
 <-------TT----------
 
-Due to possible compensation, cannot be determined from secondary structure without some appeal to geometry of embedding. Can be determined through graph traversal.
+Due to secondary structure compensation, ss cannot be determined from secondary structure without some appeal to geometry of embedding. Can be determined through graph traversal.
 
 ##Algorithm
 
-Take a random staple. Find the longest substring in the sample present in the scaffold via a suffix tree. Remove the center of the substring (just a bit, not sure much now) from the staple. Then find the longest substring of the modified staple in the scaffold. Repeat until there is no unassigned nucleotide #are we sure?.
+Take a random staple. Find the longest substring in the sample present in the scaffold via a suffix tree. Remove the center of the substring (just a bit, not sure much now, but maybe doesn't matter so much) from the staple. Then find the longest substring of the modified staple in the scaffold. Repeat until there is no unassigned nucleotide #are we sure?.
 
 Possible doubly assigned nucleotides? But this is what we want!
 
-Use double assigned nucleotides to get a SET of possible assignment for that staple. Repeat for every staple, such that for every staple there is a set of possible assignments.
+Use doubly assigned nucleotides to get a SET of possible assignment for that staple. if there are zero doubly assigned nucleotide then one option, If there's one shared nt, then there are two options. Repeat for every staple, such that for every staple there is a set of possible assignments.
 
 We now need to find out through mutual consistency which staple locations are actually valid. Underdetermined type 1 can be determined through use of an SAT solver, with the requirement that scaffold nts have at most one staple nt assigned. // problem with maximizing?
 
@@ -70,5 +70,7 @@ Underdetermined type 2 can be solved through an additional Boolean satisfiabilit
 d must be an integer multiple of 10.5. We are not certain to get something this nice however... But there is probably some requirement of the minimum loop that can be effectively phrased as a Boolean clause. I'm going to have to sketch it to get a better idea...
 
 ##Implementation
+
+Use Python library for suffix tree / for picoSAT for SAT solver.
 
 ##Example
